@@ -1,14 +1,11 @@
+import 'package:calculator_flutter/constants.dart';
 import 'package:flutter/material.dart';
 
-
-const _textColor = Colors.white;
-
 class GenderWidget extends StatelessWidget {
-  const GenderWidget({
-    Key? key,
+  GenderWidget({
     required this.text,
     required this.iconData,
-  }) : super(key: key);
+  });
 
   final String text;
   final IconData iconData;
@@ -27,10 +24,7 @@ class GenderWidget extends StatelessWidget {
         ),
         Text(
           text,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: _textColor,
-          ),
+          style: kTextStyle,
         )
       ],
     );

@@ -2,24 +2,24 @@ import 'package:calculator_flutter/gender_widget.dart';
 import 'package:calculator_flutter/small_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:calculator_flutter/constants.dart';
 
-const _bottomCardHeight = 80.0;
-const _baseCardColor = Colors.deepPurple;
-const _bottomCardColor = Colors.pink;
+enum Gender { male, female, }
 
 class InputScreen extends StatefulWidget {
-  const InputScreen({Key? key}) : super(key: key);
-
   @override
   _InputScreenState createState() => _InputScreenState();
 }
 
 class _InputScreenState extends State<InputScreen> {
+  Gender selectedGender = Gender.male;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Calculator'),
+          backgroundColor: kInactiveCardColor,
+          title: Text('Calculator'),
         ),
         body: Column(
           children: [
@@ -28,7 +28,14 @@ class _InputScreenState extends State<InputScreen> {
               children: [
                 Expanded(
                     child: SmallCard(
-                  color: _baseCardColor,
+                  onTap: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                  color: selectedGender == Gender.male
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                   childCard: GenderWidget(
                     text: 'MALE',
                     iconData: FontAwesomeIcons.mars,
@@ -36,7 +43,14 @@ class _InputScreenState extends State<InputScreen> {
                 )),
                 Expanded(
                   child: SmallCard(
-                      color: _baseCardColor,
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.female;
+                        });
+                      },
+                      color: selectedGender == Gender.female
+                          ? kActiveCardColor
+                          : kInactiveCardColor,
                       childCard: GenderWidget(
                         text: 'FEMALE',
                         iconData: FontAwesomeIcons.venus,
@@ -44,19 +58,27 @@ class _InputScreenState extends State<InputScreen> {
                 ),
               ],
             )),
-            Expanded(child: SmallCard(color: _baseCardColor)),
+            Expanded(
+                child: SmallCard(
+              color: kActiveCardColor,
+              childCard: Column(
+                children: [
+                  Text('HEIGHT', style: kTextStyle,),
+                ],
+              ),
+            )),
             Expanded(
                 child: Row(
               children: [
-                Expanded(child: SmallCard(color: _baseCardColor)),
-                Expanded(child: SmallCard(color: _baseCardColor)),
+                Expanded(child: SmallCard(color: kInactiveCardColor)),
+                Expanded(child: SmallCard(color: kInactiveCardColor)),
               ],
             )),
             Container(
-              color: _bottomCardColor,
+              color: kBottomCardColor,
               margin: EdgeInsets.only(top: 10.0),
               width: double.infinity,
-              height: _bottomCardHeight,
+              height: kBottomCardHeight,
             )
           ],
         ));
