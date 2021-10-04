@@ -10,7 +10,12 @@ const kTextStyle = TextStyle(
   color: Colors.white,
 );
 
-const kNumberStyle = TextStyle(
-    fontSize: 50.0,
-    fontWeight: FontWeight.bold
+const kNumberStyle = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold);
+
+const kTitleTextStyle = TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold);
+
+const kResultTextStyle = TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.green,
 );
